@@ -20,7 +20,9 @@ test_max_time = 20 # maximum number of seconds for each test before timeout
 
 signal(SIGTSTP, SIG_IGN) # ignore SIGTSTP
 
-for trace in tracefiles:
+# Run a trace, return True if the trace passes, False otherwise
+# Update grades dictionary for this trace
+def run_trace(trace):
     try:
         studentoutput = subprocess.check_output(['./timeout -k ' + str(test_max_time+5) + ' ' + str(test_max_time) + ' ./sdriver.pl -t ' + str(trace) + ".txt -s ./tsh -a '-p' "], timeout=test_max_time, shell=True)
         refoutput = subprocess.check_output(['./sdriver.pl -t ' + str(trace) + ".txt -s ./tshref -a '-p' "], timeout=test_max_time, shell=True)
@@ -45,10 +47,11 @@ for trace in tracefiles:
                 print("Your " + trace + " output was different between two runs.\n"
                         "You probably have a race condition in your eval() function.\n")
                 grades[trace]=0
-                continue # go on to next trace, no points awarded
+                return False # go on to next trace, no points awarded
         if sout_mod.lower() == rout_mod.lower(): # compare them case-insensitively
             print(trace + " outputs matched (2 points)") # SUCCESS
             grades[trace] = 2
+            return True
         else:
             diffobj = difflib.Differ() # make a nice diff-style output for students to see what didn't match
             diff = diffobj.compare(sout_mod.splitlines(keepends=True), rout_mod.splitlines(keepends=True))
@@ -56,6 +59,7 @@ for trace in tracefiles:
             print("------------ ERROR: " + trace + " outputs DIFFER (0 points) ------------------------")
             sys.stdout.writelines(list(diff))
             print("\n------------ end differences for " + trace + " ------------------------------------")
+            return False
     except UnicodeDecodeError as e:
         grades[trace] = 0
         print("------------ ERROR: " + trace + " failed ------------------------")
@@ -63,19 +67,38 @@ for trace in tracefiles:
                 + str(e.start))
         print(e.object)
         print('------------ Failed test: ' + str(trace) + ' ------------------------')
+        return False
     except subprocess.CalledProcessError as e:
         grades[trace] = 0
         print('Failed test: ' + str(trace))
         print(e.output.decode("utf-8"))
+        return False
     except subprocess.TimeoutExpired:
         grades[trace] = 0
         print('Failed test: ' + str(trace) + ' (Test timed out)')
+        return False
 
-print("\n\n====  SHELL LAB SCORE SUMMARY  ====\n")
-for trace in tracefiles:
+if len(sys.argv) == 1:
+  print("Running all Traces")
+  for trace in tracefiles:
+    run_trace(trace)
+
+  print("\n\n====  SHELL LAB SCORE SUMMARY  ====\n")
+  for trace in tracefiles:
     if grades[trace] == 2:
-        print("[*PASSED*] (2) " + trace)
+      print("[*PASSED*] (2) " + trace)
     else:
-        print("[-FAILED-] (0) " + trace)
+      print("[-FAILED-] (0) " + trace)
  
-print("\n\n=== SHELL LAB SCORE: " + str(sum(grades.values())) + " ===\n")
+  print("\n\n=== SHELL LAB SCORE: " + str(sum(grades.values())) + " ===\n")
+elif len(sys.argv) == 2:
+  trace = sys.argv[1]
+  if trace in tracefiles:
+    passed = run_trace(trace)
+    if passed:
+      exit(0)
+    else:
+      exit(1)
+  else:
+    print("{} not a valid trace file".format(trace))
+
