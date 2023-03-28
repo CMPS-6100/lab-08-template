@@ -12,6 +12,9 @@ FILES = $(TSH) ./myspin ./mysplit ./mystop ./myint ./myread
 
 all: $(FILES)
 
+fork.o: fork.c
+	$(CC) -c fork.c
+
 tsh: tsh.c fork.o
 	$(CC) $(CFLAGS) -Wl,--wrap,fork -o tsh tsh.c fork.o
 
