@@ -1,0 +1,14 @@
+#
+# trace18.txt - Tests whether the shell can properly
+#               redirect output (and test to see if
+#               it truncates when a file already exists)
+
+/bin/ls -l tsh.c myspin.c mysplit.c > test.out
+
+/bin/cat test.out
+
+/bin/ls -l sdriver.pl > test.out
+
+/bin/cat test.out
+
+/bin/rm test.out
