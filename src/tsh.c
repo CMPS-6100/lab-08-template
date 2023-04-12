@@ -58,7 +58,7 @@ struct job_t jobs[MAXJOBS]; /* The job list */
 
 /* Here are the functions that you will implement */
 void eval(char *cmdline);
-int parseline(const char *cmdline, char **argv);
+int parseline(const char *cmdline, char *argv[]);
 int builtin_cmd(char **argv);
 void sigint_handler(int sig);
 
@@ -183,7 +183,7 @@ void eval(char *cmdline)
  * argument.  Return true if the user has requested a BG job, false if
  * the user has requested a FG job.  
  */
-int parseline(const char *cmdline, char **argv) 
+int parseline(const char *cmdline, char *argv[]) 
 {
     return -1;
 }
