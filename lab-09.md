@@ -21,7 +21,7 @@ much more experience writing code in C.
 
 You are provided with an initial shell program which you will modify.
 
-Start by logging into `cmps-6100-lab.cs.tulane.edu` as usual and clone
+Start by logging into `cmps-lab.cs.tulane.edu` as usual and clone
 this repository into your `labs` directory.
 
 Once you have cloned the repository, you can get started with familiarizing
@@ -51,7 +51,7 @@ Every time you modify your `tsh.c` file, use the `make` command to recompile it.
 To run your shell, enter `tsh` on the command line:
 
 ```
-cmps-6100:~ $ ./tsh
+cmps-lab:~ $ ./tsh
 tsh> type commands to your shell here
 ```
 
@@ -238,33 +238,33 @@ You can run the shell driver on your shell using trace file
 `trace01.txt`(for instance) by typing:
 
 ```
-cmps-6100$ ./sdriver.pl -t trace01.txt -s ./tsh -a "-p"
+cmps-lab$ ./sdriver.pl -t trace01.txt -s ./tsh -a "-p"
 ```
 
 (the `-a "-p"` argument tells your shell not to emit a prompt), or
 
 ```
-cmps-6100$ make test01
+cmps-lab$ make test01
 ```
 
 Similarly, to compare your result with the reference shell, you can run 
 the trace driver on the reference shell by typing:
 
 ```
-cmps-6100$ ./sdriver.pl -t trace01.txt -s ./tshref -a "-p"
+cmps-lab$ ./sdriver.pl -t trace01.txt -s ./tshref -a "-p"
 ```
 
 or
 
 ```
-cmps-6100$ make rtest01
+cmps-lab$ make rtest01
 ```
 
 **Helpful tip from a previous student:**  To see exactly how your shell output 
 differs from the reference shell for a specific test, use this cool trick (a bash-specific trick known as [process substitution](http://wiki.bash-hackers.org/syntax/expansion/proc_subst)):
 
 ```
-cmps-6100$ diff -u <(make test07) <(make rtest07)
+cmps-lab$ diff -u <(make test07) <(make rtest07)
 ```
 
 This will show you how your shell's output from `test07` different from the reference shell. Hopefully this will help you find bugs.
@@ -272,7 +272,7 @@ This will show you how your shell's output from `test07` different from the refe
 Finally, you can check all of the tests with:
 
 ```
-cmps-6100$ ./checktsh.py
+cmps-lab$ ./checktsh.py
 ```
 
 This will notify you of any test failures.
