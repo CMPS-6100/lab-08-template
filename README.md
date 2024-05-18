@@ -1,8 +1,8 @@
-# CMPS 6100  Lab 09
+# CMPS 6100  Lab 08
 
 In this lab, you will build your own tiny shell.
 
-To complete this lab, follow the instructions in [lab-09.md](lab-09.md) ([PDF version](lab-09.pdf)). Below you'll find important and useful information about submitting your work, using git, and testing your code. 
+To complete this lab, follow the instructions in [lab-08.md](lab-08.md) ([PDF version](lab-08.pdf)). Below you'll find important and useful information about submitting your work, using git, and testing your code. 
 
 ## Turning in your work
 - At the top of `src/tsh.c` file, **include your name**.

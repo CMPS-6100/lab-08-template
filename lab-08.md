@@ -1,4 +1,4 @@
-# CMPS 6100  Lab 09
+# CMPS 6100  Lab 08
 
 In this lab, you will build your own tiny shell.
 
