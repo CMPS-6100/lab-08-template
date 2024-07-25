@@ -59,12 +59,12 @@ struct job_t jobs[MAXJOBS]; /* The job list */
 /* Here are the functions that you will implement */
 void eval(char *cmdline);
 int parseline(const char *cmdline, char *argv[]);
-int builtin_cmd(char **argv);
+int builtin_cmd(char *argv[]);
 void sigint_handler(int sig);
 
 /* Here are helper routines that we've provided for you */
-void do_bgfg(char **argv);
-void do_redirect(char **argv);
+void do_bgfg(char *argv[]);
+void do_redirect(char *argv[]);
 void waitfg(pid_t pid);
 
 void sigtstp_handler(int sig);
@@ -91,7 +91,7 @@ handler_t *Signal(int signum, handler_t *handler);
 /*
  * main - The shell's main routine 
  */
-int main(int argc, char **argv) 
+int main(int argc, char *argv[]) 
 {
     char c;
     char cmdline[MAXLINE];
@@ -194,7 +194,7 @@ int parseline(const char *cmdline, char *argv[])
  *
  * return 1 if the command is built-in, 0 otherwise
  */
-int builtin_cmd(char **argv) 
+int builtin_cmd(char *argv[]) 
 {    
     return 0;     /* not a builtin command */
 }
@@ -204,7 +204,7 @@ int builtin_cmd(char **argv)
  * do_redirect - scans argv for any use of < or > which indicate input or output redirection
  *
  */
-void do_redirect(char **argv)
+void do_redirect(char *argv[])
 {
         int i;
 
@@ -234,7 +234,7 @@ void do_redirect(char **argv)
 /* 
  * do_bgfg - Execute the builtin bg and fg commands
  */
-void do_bgfg(char **argv) 
+void do_bgfg(char *argv[]) 
 {
     if(argv[1] == NULL){
         printf("%s command requires PID or %%jobid argument\n", argv[0]);

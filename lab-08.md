@@ -195,11 +195,6 @@ be denoted on the command line by the prefix
 denotes PID 5. (We have provided you with all of the routines you need
 for manipulating the job list.)
 
-- `tsh` should reap all of its zombie children.  If any job
-terminates because it receives a signal that it didn't catch, then
-`tsh` should recognize this event and print a message with the
-job's PID and a description of the offending signal.
-
 # Checking Your Work
 
 We have provided some tools to help you check your work.
