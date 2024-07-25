@@ -420,4 +420,6 @@ Quit anyway? (y or n) y
 
 ## Resources
 
-Harvard's [CS50 Manual Page](https://manual.cs50.io/) 
+- [Harvard's CS50 Manual Page](https://manual.cs50.io/)
+- [Harvard's CS50 Duck AI](https://cs50.ai/)
+- [Stanford's Essential C](http://cslibrary.stanford.edu/101/)
