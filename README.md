@@ -6,9 +6,10 @@ To complete this lab, follow the instructions in [lab-08.md](lab-08.md) ([PDF ve
 
 ## Turning in your work
 - At the top of `src/tsh.c` file, **include your name**.
-- Once you have pushed your final submission to GitHub, go to Canvas and submit a link to your repository to the Canvas assignment for this lab.
-- We will use gradescope to grade this assigment. Submit only your `tsh.c` 
-source file to gradescope. Gradescope will take care of the rest.
+- Once you have pushed your final submission to GitHub, go to Canvas and submit
+your source file(s) to gradescope to be autograded. There is a gradescope
+button at the bottom of the assignment page.
+  - You only need to submit `tsh.c`.
 
 ## Using Git 
 - [Clone] your lab repository.
